@@ -2,11 +2,13 @@
 
 # 📝 Full-Stack Todo Application
 
-### React.js + Spring Boot + MySQL + Docker
+### React + Vite • Spring Boot • MySQL • Docker
 
-A full-stack Todo application with a React/Vite frontend and Spring Boot REST API backend.
+A complete full-stack Todo List application with a modern React/Vite frontend and a Spring Boot REST API backend backed by MySQL.
 
-### 🌐 [Live Demo](http://phoolsagars-todo.netlify.app/)
+### 🌐 Live Application
+
+**[Open Todo Application](http://phoolsagars-todo.netlify.app/)**
 
 [![Live Demo](https://img.shields.io/badge/Live-Demo-success?style=for-the-badge)](http://phoolsagars-todo.netlify.app/)
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge&logo=github)](https://github.com/Phoolsagar/To-Do-List)
@@ -14,6 +16,19 @@ A full-stack Todo application with a React/Vite frontend and Spring Boot REST AP
 </div>
 
 ---
+
+## 📌 About The Project
+
+The **Full-Stack Todo Application** is a CRUD-based web application designed to demonstrate full-stack development using modern frontend and backend technologies.
+
+Users can create, view, update, complete, undo, and delete todos through a responsive web interface.
+
+The frontend communicates with the backend using REST APIs, while the backend manages business logic and database operations using Spring Boot, Spring Data JPA, and MySQL.
+
+
+
+---
+
 
 ## ✨ Features
 
