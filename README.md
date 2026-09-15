@@ -1,4 +1,4 @@
-# Full-Stack Todo Application
+# Full-Stack Todo Applicatio
 
 A complete Todo List application with a separate React/Vite frontend and Spring Boot/MySQL backend.
 
