@@ -1,78 +1,147 @@
-# Full-Stack Todo Applicatio
+<div align="center">
 
-A complete Todo List application with a separate React/Vite frontend and Spring Boot/MySQL backend.
+# 📝 Full-Stack Todo Application
 
-## Architecture
+### React.js + Spring Boot + MySQL + Docker
+
+A full-stack Todo application with a React/Vite frontend and Spring Boot REST API backend.
+
+### 🌐 [Live Demo](http://phoolsagars-todo.netlify.app/)
+
+[![Live Demo](https://img.shields.io/badge/Live-Demo-success?style=for-the-badge)](http://phoolsagars-todo.netlify.app/)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge&logo=github)](https://github.com/Phoolsagar/To-Do-List)
+
+</div>
+
+---
+
+## ✨ Features
+
+- ➕ Create todos
+- ✏️ Edit title and description
+- ✅ Mark todos as completed
+- ↩️ Undo completed todos
+- 🗑️ Delete todos with confirmation
+- 📋 View all todos
+- ✔️ Input validation
+- ⚠️ Error and loading states
+- 📱 Responsive UI
+- 💾 Persistent MySQL storage
+- 🔄 Instant UI updates after operations
+
+---
+
+## 🛠️ Tech Stack
+
+| Frontend | Backend | Database | Tools |
+|---|---|---|---|
+| React.js | Spring Boot | MySQL 8 | Docker |
+| Vite | Java 17+ | Hibernate/JPA | Git |
+| Axios | Spring REST API |  | GitHub |
+| CSS | Maven |  |  |
+
+---
+
+## 🏗️ Architecture
 
 ```text
-todo-application/
-├── frontend/                  # React.js + Vite + Axios
-└── backend/                   # Spring Boot + JPA + MySQL
+React.js + Vite
+       │
+       │ Axios / REST API
+       ▼
+Spring Boot
+       │
+       │ Spring Data JPA
+       ▼
+Hibernate
+       │
+       ▼
+MySQL
 ```
 
-Request flow:
+The project follows a layered backend architecture:
 
 ```text
-React.js → Axios → Spring Boot REST API → Spring Data JPA → MySQL
+Controller → Service → Repository → MySQL
 ```
 
-## Features
+---
 
-- Create todos
-- View all todos
-- View a todo by ID
-- Edit title and description
-- Mark a todo completed
-- Undo completion
-- Delete with browser confirmation
-- Input validation
-- Global backend exception handling
-- CORS configuration
-- Loading and error states
-- Responsive UI
-- Persistent MySQL storage
-- Immediate UI updates after successful API operations
+## 📂 Project Structure
 
-## Requirements
+```text
+To-Do-List/
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   └── services/
+│   ├── package.json
+│   └── vite.config.js
+│
+├── backend/
+│   ├── src/
+│   │   └── main/
+│   │       ├── java/
+│   │       │   └── com/example/todo/
+│   │       │       ├── controller/
+│   │       │       ├── service/
+│   │       │       ├── repository/
+│   │       │       ├── entity/
+│   │       │       ├── dto/
+│   │       │       ├── exception/
+│   │       │       └── config/
+│   │       └── resources/
+│   ├── Dockerfile
+│   └── pom.xml
+│
+├── .gitignore
+└── README.md
+```
+
+---
+
+## 🔗 REST API
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/todos` | Get all todos |
+| `GET` | `/api/todos/{id}` | Get todo by ID |
+| `POST` | `/api/todos` | Create todo |
+| `PUT` | `/api/todos/{id}` | Update todo |
+| `PATCH` | `/api/todos/{id}/complete` | Complete todo |
+| `PATCH` | `/api/todos/{id}/uncomplete` | Undo completion |
+| `DELETE` | `/api/todos/{id}` | Delete todo |
+
+---
+
+## 🚀 Run Locally
+
+### Prerequisites
 
 - Java 17+
 - Maven 3.9+
 - Node.js 20+
-- npm
 - MySQL 8+
 
-## 1. Create the database
-
-Open MySQL:
+### 1. Create Database
 
 ```sql
 CREATE DATABASE todo_db;
 ```
 
-The `todos` table is created/updated automatically by Hibernate because:
+### 2. Configure Backend
 
-```properties
-spring.jpa.hibernate.ddl-auto=update
+Create `backend/.env`:
+
+```env
+DB_URL=jdbc:mysql://localhost:3306/todo_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+DB_USERNAME=root
+DB_PASSWORD=your_mysql_password
+CORS_ALLOWED_ORIGINS=http://localhost:5173
 ```
 
-## 2. Configure the backend
-
-The backend reads credentials from environment variables and has local defaults.
-
-### Windows PowerShell
-
-```powershell
-$env:DB_USERNAME="root"
-$env:DB_PASSWORD="your_mysql_password"
-$env:DB_URL="jdbc:mysql://localhost:3306/todo_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true"
-$env:CORS_ALLOWED_ORIGINS="http://localhost:5173"
-```
-
-Or edit `backend/src/main/resources/application.properties`.
-
-Do not commit real database credentials.
-
-## 3. Run the backend
+### 3. Start Backend
 
 ```bash
 cd backend
@@ -85,17 +154,11 @@ Backend:
 http://localhost:8080
 ```
 
-API base:
+### 4. Start Frontend
 
-```text
-http://localhost:8080/api
-```
+Create `frontend/.env`:
 
-## 4. Run the frontend
-
-Copy `.env.example` to `.env`:
-
-```text
+```env
 VITE_API_URL=http://localhost:8080/api
 ```
 
@@ -113,107 +176,49 @@ Frontend:
 http://localhost:5173
 ```
 
-## REST API
+> ⚠️ Never commit real `.env` files or database credentials. Use the provided `.env.example` files.
 
-| Method | Endpoint | Purpose |
-|---|---|---|
-| GET | `/api/todos` | Get all todos |
-| GET | `/api/todos/{id}` | Get one todo |
-| POST | `/api/todos` | Create todo |
-| PUT | `/api/todos/{id}` | Update todo |
-| PATCH | `/api/todos/{id}/complete` | Complete todo |
-| PATCH | `/api/todos/{id}/uncomplete` | Undo completion |
-| DELETE | `/api/todos/{id}` | Delete todo |
+---
 
-### Create/Update request
+## 🐳 Docker
 
-```json
-{
-  "title": "Learn Spring Boot",
-  "description": "Revise REST APIs and MVC"
-}
+The backend includes Docker support.
+
+```bash
+docker build -t todo-backend ./backend
+docker run -p 8080:8080 todo-backend
 ```
 
-### Response
+---
 
-```json
-{
-  "id": 1,
-  "title": "Learn Spring Boot",
-  "description": "Revise REST APIs and MVC",
-  "completed": false,
-  "createdAt": "2026-09-15T02:46:00",
-  "updatedAt": "2026-09-15T02:46:00"
-}
-```
-
-## Backend package structure
+## 🌐 Deployment
 
 ```text
-backend/src/main/java/com/example/todo/
-├── config/
-│   └── CorsConfig.java
-├── controller/
-│   └── TodoController.java
-├── dto/
-│   ├── TodoRequest.java
-│   └── TodoResponse.java
-├── entity/
-│   └── Todo.java
-├── exception/
-│   ├── ApiError.java
-│   ├── GlobalExceptionHandler.java
-│   └── TodoNotFoundException.java
-├── repository/
-│   └── TodoRepository.java
-├── service/
-│   └── TodoService.java
-└── TodoApplication.java
+GitHub
+  │
+  ├── React/Vite → Netlify
+  │
+  └── Spring Boot → Docker → Backend Hosting
+                              │
+                              ▼
+                           MySQL
 ```
 
-## Frontend package structure
+**Live Application:**  
+👉 http://phoolsagars-todo.netlify.app/
 
-```text
-frontend/src/
-├── components/
-│   ├── EditTodoModal.jsx
-│   ├── Navbar.jsx
-│   ├── TodoForm.jsx
-│   ├── TodoItem.jsx
-│   └── TodoList.jsx
-├── pages/
-│   └── TodoPage.jsx
-├── services/
-│   └── todoService.js
-├── App.jsx
-├── index.css
-└── main.jsx
-```
+**Source Code:**  
+👉 https://github.com/Phoolsagar/To-Do-List
 
-## Production notes
+---
 
-For production, replace `ddl-auto=update` with a migration tool such as Flyway or Liquibase, use secrets/environment management for database credentials, restrict CORS to the actual frontend domain, and serve the frontend over HTTPS.
+## 👨‍💻 Author
 
-## Troubleshooting
+**Phoolsagar Singh**  
+Java Developer | B.Tech Computer Science & Engineering Graduate
 
-### MySQL connection error
+**GitHub:** https://github.com/Phoolsagar
 
-Verify MySQL is running and that `todo_db` exists:
+---
 
-```sql
-SHOW DATABASES;
-```
-
-Verify the username/password and `DB_URL`.
-
-### CORS error
-
-Make sure the frontend URL is listed in:
-
-```text
-CORS_ALLOWED_ORIGINS=http://localhost:5173
-```
-
-### Port already in use
-
-Backend uses port `8080`; Vite normally uses `5173`. Stop the conflicting process or change the port configuration.
+⭐ If you like this project, consider giving it a star!
