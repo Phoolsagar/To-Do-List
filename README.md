@@ -4,7 +4,7 @@
 
 ### React + Vite • Spring Boot • MySQL • Docker
 
-A complete full-stack Todo List application with a modern React/Vite frontend and a Spring Boot REST API backend backed by MySQL.
+A complete full-stack Todo List application with a modern React/Vite frontend and a Spring Boot REST API backend backed by MySQL.  
 
 ### 🌐 Live Application
 
