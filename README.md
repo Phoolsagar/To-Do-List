@@ -9,7 +9,7 @@ A complete full-stack Todo List application with a modern React/Vite frontend an
 ### 🌐 Live Application
   
 **[Open Todo Application](http://phoolsagars-todo.netlify.app/)**
-
+ 
 [![Live Demo](https://img.shields.io/badge/Live-Demo-success?style=for-the-badge)](http://phoolsagars-todo.netlify.app/)
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge&logo=github)](https://github.com/Phoolsagar/To-Do-List)
 
