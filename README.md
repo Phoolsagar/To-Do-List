@@ -7,7 +7,7 @@
 A complete full-stack Todo List application with a modern React/Vite frontend and a Spring Boot REST API backend backed by MySQL.  
 
 ### 🌐 Live Application
-
+  
 **[Open Todo Application](http://phoolsagars-todo.netlify.app/)**
 
 [![Live Demo](https://img.shields.io/badge/Live-Demo-success?style=for-the-badge)](http://phoolsagars-todo.netlify.app/)
